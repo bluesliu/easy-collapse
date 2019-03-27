@@ -1,0 +1,65 @@
+.easy-collapse {
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.easy-collapse-panel {
+    margin: 0;
+    padding: 3px;
+
+    background-color: #535353;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Panel 的内容 */
+.easy-collapse-content {
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    word-wrap: break-word;
+
+    color: #ffffff;
+}
+
+/* Panel 的标题栏 */
+.easy-collapse-titleBar {
+    height: 20px;
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/*箭头动画：open*/
+.easy-collapse-titleBar .arrow-open {
+    transition: 0.3s;
+    transition-property: all;
+    transform: rotate(0deg);
+}
+
+/*箭头动画：close*/
+.easy-collapse-titleBar .arrow-close {
+    transition: 0.3s;
+    transition-property: all;
+    transform: rotate(-90deg);
+}
+
+/*标题文字*/
+.easy-collapse-titleBar .title {
+    padding: 0;
+    margin-left: 5px;
+    color: #cfcfcf;
+}
