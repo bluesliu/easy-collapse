@@ -14,6 +14,22 @@ module.exports = {
     module: {
         rules: [
             {
+                // 用正则去匹配要用该 loader 转换的 CSS 文件
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
