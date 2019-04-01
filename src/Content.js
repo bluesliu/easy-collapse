@@ -1,16 +1,19 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import getClassName from "./getClassName";
 
 class Content extends Component{
     static propTypes = {
         isOpen : PropTypes.bool,
-        height : PropTypes.number
+        height : PropTypes.number,
+        className : PropTypes.string
     };
 
     render() {
+        const {className} = this.props;
         return (
             <div
-                className="easy-collapse-content"
+                className={getClassName(className, "content")}
                 style={this.getStyle()}
             >
                 {this.props.children}

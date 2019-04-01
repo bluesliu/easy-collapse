@@ -12,7 +12,7 @@ module.exports = {
     devServer: {
         contentBase: './example',
         hot: true,
-        port: 3000,
+        port: 3001,
         open: true
     },
     module: {

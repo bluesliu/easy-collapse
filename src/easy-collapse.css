@@ -44,21 +44,21 @@
 }
 
 /*箭头动画：open*/
-.easy-collapse-titleBar .arrow-open {
+.easy-collapse-arrow-open {
     transition: 0.3s;
     transition-property: all;
     transform: rotate(0deg);
 }
 
 /*箭头动画：close*/
-.easy-collapse-titleBar .arrow-close {
+.easy-collapse-arrow-close {
     transition: 0.3s;
     transition-property: all;
     transform: rotate(-90deg);
 }
 
 /*标题文字*/
-.easy-collapse-titleBar .title {
+.easy-collapse-title {
     padding: 0;
     margin-left: 5px;
     color: #cfcfcf;

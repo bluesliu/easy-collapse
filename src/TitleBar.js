@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import arrow from "./arrow.svg";
+import getClassName from "./getClassName";
 
 class TitleBar extends Component{
 
@@ -8,7 +9,8 @@ class TitleBar extends Component{
         title : PropTypes.string,
         showArrow : PropTypes.bool,
         isOpen : PropTypes.bool,
-        onClick : PropTypes.func
+        onClick : PropTypes.func,
+        className : PropTypes.string
     };
 
     constructor(props){
@@ -17,22 +19,22 @@ class TitleBar extends Component{
     }
 
     render() {
-        const {title} = this.props;
+        const {title, className} = this.props;
         return (
-            <div className="easy-collapse-titleBar" onClick={this.onClickHandler}>
+            <div className={getClassName(className, "titleBar")} onClick={this.onClickHandler}>
                 {this.renderArrow()}
-                <p className="title">{title}</p>
+                <p className={getClassName(className, "title")}>{title}</p>
             </div>
         )
     }
 
     renderArrow() {
-        const {isOpen, showArrow} = this.props;
+        const {isOpen, showArrow, className} = this.props;
         if (!showArrow) return null;
 
         return (
             <img
-                className={isOpen ? "arrow-open" : "arrow-close"}
+                className={isOpen ? getClassName(className, "arrow-open") : getClassName(className, "arrow-close")}
                 src={arrow} alt="arrow"/>
         )
     }

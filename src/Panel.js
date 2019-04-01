@@ -4,6 +4,7 @@ import PropTypes from  "prop-types";
 import "./easy-collapse.css";
 import TitleBar from "./TitleBar";
 import Content from "./Content";
+import getClassName from "./getClassName";
 
 class Panel extends Component{
 
@@ -11,7 +12,8 @@ class Panel extends Component{
         title : PropTypes.string,
         showArrow : PropTypes.bool,
         isOpen : PropTypes.bool,
-        height : PropTypes.number
+        height : PropTypes.number,
+        className : PropTypes.string
     };
 
     static defaultProps = {
@@ -32,12 +34,12 @@ class Panel extends Component{
     }
 
     render() {
-        const {title, showArrow, height} = this.props;
+        const {title, showArrow, height, className} = this.props;
         const {isOpen} = this.state;
         return (
-            <div className="easy-collapse-panel">
-                <TitleBar title={title} showArrow={showArrow} isOpen={isOpen} onClick={this.onClickTitle}/>
-                <Content isOpen={isOpen} height={height}>{this.props.children}</Content>
+            <div className={getClassName(className, "panel")}>
+                <TitleBar className={className} title={title} showArrow={showArrow} isOpen={isOpen} onClick={this.onClickTitle}/>
+                <Content className={className} isOpen={isOpen} height={height}>{this.props.children}</Content>
             </div>
         )
     }
