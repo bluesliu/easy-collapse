@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from  "prop-types";
+import Transition from "easy-transition";
 
 import "./easy-collapse.css";
 import TitleBar from "./TitleBar";
@@ -13,14 +14,14 @@ class Panel extends Component{
         showArrow : PropTypes.bool,
         isOpen : PropTypes.bool,
         height : PropTypes.number,
-        className : PropTypes.string
+        className : PropTypes.string,
+        unmountOnClose : PropTypes.bool
     };
 
     static defaultProps = {
         title : "",
         showArrow : true,
-        isOpen : true,
-        height : 100
+        isOpen : true
     };
 
     constructor(props){
@@ -30,16 +31,26 @@ class Panel extends Component{
             isOpen : this.props.isOpen
         };
 
+        this.firstRender = true;
+
         this.onClickTitle = this.onClickTitle.bind(this);
     }
 
+    componentDidMount() {
+        this.firstRender = false;
+    }
+
     render() {
-        const {title, showArrow, height, className} = this.props;
+        const {title, showArrow, height, className, unmountOnClose, children, id} = this.props;
         const {isOpen} = this.state;
+        const {firstRender} = this;
+        console.log(id)
         return (
-            <div className={getClassName(className, "panel")}>
+            <div className={getClassName(className, "panel")} key={"abcd"}>
                 <TitleBar className={className} title={title} showArrow={showArrow} isOpen={isOpen} onClick={this.onClickTitle}/>
-                <Content className={className} isOpen={isOpen} height={height}>{this.props.children}</Content>
+                <Transition in={isOpen} appear={!firstRender} timeout={300} unmountOnExit={unmountOnClose}>
+                    <Content className={className} height={height} timeout={300}>{children}</Content>
+                </Transition>
             </div>
         )
     }

@@ -45,6 +45,7 @@
 
 /*箭头动画：open*/
 .easy-collapse-arrow-open {
+    outline: none;
     transition: 0.3s;
     transition-property: all;
     transform: rotate(0deg);
@@ -52,6 +53,7 @@
 
 /*箭头动画：close*/
 .easy-collapse-arrow-close {
+    outline: none;
     transition: 0.3s;
     transition-property: all;
     transform: rotate(-90deg);

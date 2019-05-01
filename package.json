@@ -1,6 +1,6 @@
 {
   "name": "easy-collapse",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "react 实现的折叠面板",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
@@ -39,6 +39,7 @@
   "peerDependencies": {},
   "dependencies": {
     "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react-dom": "^16.8.3",
+    "easy-transition": "^0.1.0"
   }
 }

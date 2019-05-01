@@ -7,11 +7,13 @@ import getClassName from "./getClassName";
 export default class Collapse extends Component {
 
     static propTypes = {
-        className : PropTypes.string
+        className : PropTypes.string,
+        unmountOnClose : PropTypes.bool,
     };
 
     static defaultProps = {
-        className : "easy-collapse"
+        className : "easy-collapse",
+        unmountOnClose : true
     };
 
     render() {
@@ -24,8 +26,8 @@ export default class Collapse extends Component {
     }
 
     renderPanels() {
-        const {className} = this.props;
-        const children = React.Children.map(this.props.children, (element, index) => {
+        const {className, unmountOnClose} = this.props;
+        return React.Children.map(this.props.children, (element, index) => {
             if (!element) {
                 return null;
             }
@@ -35,21 +37,36 @@ export default class Collapse extends Component {
                 console.warn("警告: Collapse 的子组件类型必须是 Collapse.Panel");
                 return null;
             }
+
+            const {key} = element;
+            console.log("key:",key)
+            const oldProps = element.props;
+            const newProps = {
+                id : key===undefined?index:key,
+                key : key===undefined?index:key,
+                className : className,
+                unmountOnClose : unmountOnClose
+            };
+            const mergeProps = Object.assign({}, oldProps, newProps);
+
             return element;
         });
 
-        const list = [];
-        for (let i = 0; i < children.length; i++) {
-            const element = children[i];
-            const {key, ...oldProps} = element.props;
-            const newProps = {
-                key : key===undefined?i:key,
-                className : className
-            };
-            const mergeProps = Object.assign({}, oldProps, newProps);
-            list.push(React.cloneElement(element, mergeProps));
-        }
+        // const list = [];
+        // for (let i = 0; i < children.length; i++) {
+        //     const element = children[i];
+        //     const {key} = element;
+        //     console.log("key:",key)
+        //     const oldProps = element.props;
+        //     const newProps = {
+        //         key : key===undefined?i:key,
+        //         className : className,
+        //         unmountOnClose : unmountOnClose
+        //     };
+        //     const mergeProps = Object.assign({}, oldProps, newProps);
+        //     list.push(React.cloneElement(element, mergeProps));
+        // }
 
-        return list;
+        // return list;
     }
 }

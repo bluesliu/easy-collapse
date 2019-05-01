@@ -7,10 +7,10 @@ export default class App extends Component {
         return (
             <div>
                 <Collapse className="custom-style">
-                    <Collapse.Panel title={"Panel 1"}>
+                    <Collapse.Panel key={"a"} title={"Panel 1"}>
                         content
                     </Collapse.Panel>
-                    <Collapse.Panel title={"Panel 2"}>
+                    <Collapse.Panel key={"b"} title={"Panel 2"}>
                         content
                     </Collapse.Panel>
                 </Collapse>
